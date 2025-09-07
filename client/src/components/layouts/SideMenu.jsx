@@ -20,7 +20,7 @@ const SideMenu = ({ activeMenu }) => {
   const handleLogout = () => {
     localStorage.clear();
     clearUser();
-    navigate("/login");
+    navigate("/");
     toast.success("LoggedOut Successfully");
   };
 
