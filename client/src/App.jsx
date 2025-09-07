@@ -18,8 +18,7 @@ const App = () => {
       <Toaster />
       <Router>
         <Routes>
-          <Route path="/" element={<Root />} />
-          <Route path="/login" exact element={<Login />} />
+          <Route path="/" exact element={<Login />} />
           <Route path="/dashboard" exact element={<Home />} />
           <Route path="/income" exact element={<Income />} />
           <Route path="/expense" exact element={<Expense />} />
