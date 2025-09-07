@@ -25,22 +25,30 @@ const Login = () => {
           email,
           password,
         });
+
+        const { token, user } = response.data;
+        if (token) {
+          updateUser(user);
+          localStorage.setItem("token", token);
+          navigate("/dashboard");
+          toast.success("Logged in Successfully");
+        } else {
+          toast.error(response.data.message);
+        }
       } else {
         response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
           name,
           email,
           password,
         });
-      }
 
-      const { token, user } = response.data;
-      if (token) {
-        updateUser(user);
-        localStorage.setItem("token", token);
-        navigate("/dashboard");
-        toast.success("LoggedIn Successfully");
-      } else {
-        toast.error(response.data.message);
+        if (response.data.success) {
+          toast.success("Account created successfully! Please login.");
+          setState("login");
+          setPassword("");
+        } else {
+          toast.error(response.data.message);
+        }
       }
     } catch (error) {
       toast.error(error.message);
